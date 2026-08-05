@@ -64,6 +64,12 @@ jobs:
           git commit -m "Update image to ${{ github.sha }}"
           git push origin main
       
+      - name: Install ArgoCD CLI
+        run: |
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x argocd
+          sudo mv argocd /usr/local/bin/
+
       - name: Sync ArgoCD
         run: |
           argocd app sync releaseapp --grpc-web
