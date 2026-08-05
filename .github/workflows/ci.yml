@@ -70,7 +70,9 @@ jobs:
           chmod +x argocd
           sudo mv argocd /usr/local/bin/
 
-      - name: Sync ArgoCD
+      - name: Sync ArgoCD Application
         run: |
+          argocd login localhost:8081 --insecure
           argocd app sync releaseapp --grpc-web
+
 
