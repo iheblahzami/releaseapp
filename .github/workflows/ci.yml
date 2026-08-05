@@ -63,3 +63,8 @@ jobs:
           git add deployment.yaml
           git commit -m "Update image to ${{ github.sha }}"
           git push origin main
+      
+      - name: Sync ArgoCD
+        run: |
+          argocd app sync releaseapp --grpc-web
+
